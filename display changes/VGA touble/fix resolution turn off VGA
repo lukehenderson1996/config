@@ -1,0 +1,22 @@
+lspci | grep VGA
+
+xrandr -q | grep 'VGA\|HDMI\|DP\|LVDS'
+output was
+VGA-1 connected primary 1024x768+0+0 (normal left inverted right x axis y axis) 0mm x 0mm
+
+
+xrandr --output VGA-1 --off
+
+xrandr --output VGA-1 --auto 
+
+
+#for script:
+xrandr --output VGA-1 --off
+xrandr --fb 1920x1080
+
+
+
+#to fix:
+xrandr --output VGA-1 --auto
+xrandr --fb 1024x768
+

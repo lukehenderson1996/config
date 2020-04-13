@@ -1,0 +1,64 @@
+sudo nano /usr/share/applications/APPNAME.desktop
+
+
+
+
+
+[Desktop Entry]
+Version = 1.0
+Type = Application
+Terminal = false
+Name = NAME
+Exec = /usr/bin/APPNAME
+Icon = /opt/PATH/ICON.png
+Categories = Application;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Solution for creating your own script (don't use):
+
+first create a .sh file
+
+then
+
+
+I think it would be better to use a launcher file for your script by creating a ~/Desktop/ssh_home.desktop file with the following contents:
+
+[Desktop Entry]
+Version=1.0
+Exec=/home/yourname/bin/ssh_home.sh
+Name=SSH Server
+GenericName=SSH Server
+Comment=Connect to My Server
+Encoding=UTF-8
+Terminal=true
+Type=Application
+Categories=Application;Network;
+
+That way you will have a clickable icon which will launch your script.
+
+You may have to also set the executable flag with chmod:
+
+chmod +x ~/Desktop/ssh_home.desktop
+
+
+
+
+

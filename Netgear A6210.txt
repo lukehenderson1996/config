@@ -1,0 +1,11 @@
+https://community.netgear.com/t5/WiFi-Adapters/A6210-ADAPTER-ON-LINUX-UBUNTU/td-p/1062677
+
+$ git clone https://github.com/jurobystricky/Netgear-A6210
+$ cd Netgear-A6210
+$ make
+$ sudo make install
+
+
+
+if that doesnt work maybe try this?
+https://askubuntu.com/questions/1033772/cant-get-my-netgear-a6210-usb-wifi-adapter-to-work-on-my-linux-ubuntu

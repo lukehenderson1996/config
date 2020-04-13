@@ -1,0 +1,27 @@
+nordvpn connect ch126
+nordvpn c Switzerland
+nordvpn set killswitch enabled
+
+nordvpn set autoconnect enabled Switzerland
+
+
+plug in USB
+
+utserver -settingspath /opt/utorrent-server-alpha-v3_3/ -daemon
+
+
+
+
+
+
+
+nordvpn connect ch126
+126 is zurich
+additional swiss vpns: ch187 ch90 ch186 ch111 ch216 ch158 ch191
+185 is italy
+
+
+
+utserver -settingspath /opt/utorrent-server-alpha-v3_3/ -daemon
+sudo pkill utserver
+

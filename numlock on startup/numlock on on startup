@@ -1,0 +1,22 @@
+$ sudo apt-get install numlockx
+$sudo sed -i 's|^exit 0.*$|# Numlock enable\n[ -x /usr/bin/numlockx ] \&\& numlockx on\n\nexit 0|' /etc/rc.local
+
+
+
+
+
+
+for ubuntu 14
+$ sudo gedit /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf 
+add this line:
+greeter-setup-script=/usr/bin/numlockx on
+
+
+
+
+for newer ubuntu:
+$ sudo gedit /etc/X11/xinit/xinitrc
+
+
+#turn numlock on
+/usr/bin/numlockx on

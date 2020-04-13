@@ -1,0 +1,46 @@
+https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-18-04/
+
+this computer (Hostage-Server):
+2600:1702:780:df50:b577:c9c8:504:5469
+2600:1702:780:df50:b577:c9c8:504:5469
+IPv4 is: 
+99.71.209.127
+99.71.209.127
+192.168.1.122
+
+
+https://jitsi.org/news/make-it-live-with-video/
+https://github.com/jitsi/jitsi-meet#installation
+https://github.com/jitsi/jitsi-meet/blob/master/doc/quick-install.md
+
+
+
+use this for the echo part of the instructions:
+sudo su -c "echo 'deb https://download.jitsi.org stable/' >> /etc/apt/sources.list.d/jitsi-stable.list"
+
+
+
+
+
+Settings before:
+IP Passthrough: off
+IPv6: on
+
+Firewall advanced:
+Drop incoming ICMP Echo requests to LAN			off
+Drop incoming ICMP Echo requests to Device LAN Address	on
+Drop incoming ICMP Echo requests to Device WAN Address	on
+ESP Header Forwarding					off
+Authentication Header Forwarding			off
+Reflexive ACL						on
+ESP ALG							on
+SIP ALG							on
+
+
+
+Packet Filter: on
+
+
+NAT/Gaming:
+connectToCiscoAP	TCP:443	192.168.1.90
+ATT_Motorola_AP_28A946

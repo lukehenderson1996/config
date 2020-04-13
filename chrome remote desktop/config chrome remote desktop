@@ -1,0 +1,12 @@
+sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop.orig
+
+
+sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop.orig /opt/google/chrome-remote-desktop/chrome-remote-desktop
+
+/opt/google/chrome-remote-desktop/chrome-remote-desktop --stop
+
+/opt/google/chrome-remote-desktop/chrome-remote-desktop --start
+
+
+
+sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktopMODIFIED_FOR_CURRENT_DISPLAY.orig

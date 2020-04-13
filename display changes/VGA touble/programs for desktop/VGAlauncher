@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version = 1.0
+Type = Application
+Terminal = false
+Name = break VGA
+Exec = /home/luke/Desktop/break_VGA.sh
+Icon = /opt/PATH/ICON.png
+Categories = Application;

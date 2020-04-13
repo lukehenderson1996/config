@@ -1,0 +1,11 @@
+#change resolution after boot
+xrandr 
+
+
+
+
+#make profile
+gedit .xprofile
+	xrandr --fb 1920x1080
+	and save that and exit gedit
+chmod +x .xprofile

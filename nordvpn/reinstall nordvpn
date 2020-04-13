@@ -1,0 +1,7 @@
+sudo apt --purge autoremove nordvpn* 
+
+sudo dpkg -i /home/luke/Downloads/nordvpn.deb
+sudo apt update
+sudo apt install nordvpn
+y
+nordvpn login

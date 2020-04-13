@@ -1,0 +1,24 @@
+xset m accel thresh
+
+try this:
+xset m 3/2 40
+
+
+
+#to make it permanent:
+
+$ sudo gedit ~/.config/autostart/mouse.desktop
+#may have to create directory with nautilus
+
+
+[Desktop Entry]
+Name=Decrease mouse sensitivity
+Exec=xset m 3/2 40
+Type=Application
+Comment[en_US]=Use xset to set mouse params
+Comment=Use xset to set mouse params
+
+
+#then right click on ~/.config/autostart/mouse.desktop
+properties
+Allow executing file as program

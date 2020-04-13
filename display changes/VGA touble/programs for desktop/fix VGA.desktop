@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=fix VGA
+Exec=/home/luke/Desktop/fix_VGA.sh
+Icon=/opt/PATH/ICON.png
+Categories=Application;
+Name[en_US]=fix VGA

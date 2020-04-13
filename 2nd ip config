@@ -1,0 +1,11 @@
+https://www.2daygeek.com/how-to-add-additional-ip-secondary-ip-in-ubuntu-debian-system/
+
+https://198.23.162.66 is main ip
+https://198.23.162.67 is 2nd ip
+
+
+ifconfig
+
+ip addr
+
+ip addr add 198.23.162.67/29 broadcast 198.23.162.255 dev eno1 label eno1:2

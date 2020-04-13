@@ -1,0 +1,9 @@
+timedatectl set-local-rtc 1 --adjust-system-clock
+
+timedatectl
+
+#you want to see "RTC in local TZ: "
+
+
+#to undo:
+timedatectl set-local-rtc 0 --adjust-system-clock

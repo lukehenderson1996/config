@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script>
+      var local = null;
+      var session = null;
+      try {
+        local = JSON.parse(localStorage.getItem("chatter"));
+        session = JSON.parse(sessionStorage.getItem("chatter"));
+      } catch (e) {}
+      window.parent.postMessage(
+        {
+          chatterIds: {
+            local,
+            session
+          }
+        },
+        "*"
+      );
+    </script>
+    <title>Con</title>
+  </head>
+  <body style="margin:0;">
+  
+
+</body></html>

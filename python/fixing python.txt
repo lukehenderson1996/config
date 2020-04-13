@@ -1,0 +1,23 @@
+#to get parse after everthing else
+sudo apt-get -y install python3-pip
+pip3 install parse
+
+
+
+sudo apt-get install python-setuptools
+
+sudo easy_install pip
+sudo easy_install [any module here]
+
+
+
+#for upwork library
+#example from internet for different repo
+git+git://github.com/jkbr/httpie.git@l#egg=httpie
+#git repo we need
+https://github.com/upwork/python-upwork
+#put together
+git+git://github.com/upwork/python-upwork.git@l#egg=upwork
+#try this/need to have git installed
+sudo easy_install git+git://github.com/upwork/python-upwork.git@l#egg=upwork
+

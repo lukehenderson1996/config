@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version = 1.0
+Type = Application
+Terminal = true
+Name = Ticker (terminal)
+Exec = /home/luke/Desktop/run_ticker.sh
+Categories = Application;
