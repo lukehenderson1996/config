@@ -1,0 +1,88 @@
+setup internet
+
+The 198.23.162.64/29 has 5 usable IP's, which are:
+Main IP: 198.23.162.66
+Usable IP's:
+198.23.162.67
+198.23.162.68
+198.23.162.69
+198.23.162.70
+Also, here is the additional info you'll need.
+Gateway: 198.23.162.65
+Netmask: 255.255.255.248
+You can configure the rest of the IP's by following this simple guide:
+https://www.2daygeek.com/how-to-add-additional-ip-secondary-ip-in-ubuntu-debian-system/
+
+$
+#
+sudo ifconfig eno1 198.23.162.66 netmask 255.255.255.248
+sudo ifconfig eno1 198.23.162.64/29 netmask 255.255.255.248
+sudo route add default gw 198.23.162.65 eno1
+
+sudo nano /etc/network/interfaces
+
+auto lo eno1
+iface lo inet loopback
+iface eno1 inet static
+        address 198.23.162.66
+        netmask 255.255.255.248
+        gateway 198.23.162.65
+dns-nameservers 8.8.8.8 8.8.4.4
+$
+sudo /etc/init.d/networking restart
+
+#that was from 
+https://www.tecmint.com/set-static-ip-address-in-ubuntu-15-10-server/
+
+
+
+
+
+
+
+
+
+
+
+
+working configuration:
+
+
+
+
+
+eno1      Link encap:Ethernet  HWaddr 0c:c4:7a:0b:5b:76  
+          inet addr:198.23.162.66  Bcast:198.23.162.71  Mask:255.255.255.248
+          inet6 addr: fe80::ec4:7aff:fe0b:5b76/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:5408 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1606 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:421025 (421.0 KB)  TX bytes:207873 (207.8 KB)
+          Memory:f7400000-f747ffff 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:9975 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9975 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1 
+          RX bytes:741504 (741.5 KB)  TX bytes:741504 (741.5 KB)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

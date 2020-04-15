@@ -5,41 +5,6 @@ $ sudo usermod -a -G sudo luke
 #admin privledges
 $ gpasswd -a luke sudo
 
-setup internet
-
-The 198.23.162.64/29 has 5 usable IP's, which are:
-Main IP: 198.23.162.66
-Usable IP's:
-198.23.162.67
-198.23.162.68
-198.23.162.69
-198.23.162.70
-Also, here is the additional info you'll need.
-Gateway: 198.23.162.65
-Netmask: 255.255.255.248
-You can configure the rest of the IP's by following this simple guide:
-https://www.2daygeek.com/how-to-add-additional-ip-secondary-ip-in-ubuntu-debian-system/
-
-Here is the networking info you will need to set up the basic network.
-IP Range: 198.23.162.64/29     
-Main IP: 198.23.162.66
-Gateway: 198.23.162.65
-Subnet: 255.255.255.248
-$
-sudo ifconfig eno1 198.23.162.66 netmask 255.255.255.248
-sudo ifconfig eno1 198.23.162.64/29 netmask 255.255.255.248
-sudo route add default gw 198.23.162.65 eno1
-
-sudo nano /etc/network/interfaces
-
-auto lo eno1
-iface lo inet loopback
-iface eno1 inet static
-        address 198.23.162.66
-        netmask 255.255.255.248
-        gateway 198.23.162.65
-$
-sudo /etc/init.d/networking restart
 
 
 
@@ -54,6 +19,8 @@ $
 reboot
 
 https://remotedesktop.google.com/headless/
+
+scp /home/luke/Documents/scp_transfer/chrome-remote-desktop_current_amd64.deb  luke@198.23.162.66:/home/luke/Documents/scp_transfer
 
 #you get this command from https://remotedesktop.google.com/headless/
 #just change name= to your server name

@@ -3,10 +3,19 @@ sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chro
 
 sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop.orig /opt/google/chrome-remote-desktop/chrome-remote-desktop
 
+
+
+sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktopMODIFIED_FOR_CURRENT_DISPLAY.orig
+
+
+sudo cp /home/luke/Documents/scp_transfer/chrome-remote-desktopMODIFIED_FOR_CURRENT_DISPLAY.orig /opt/google/chrome-remote-desktop/chrome-remote-desktop 
+
+
+
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop
 
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --start
 
 
 
-sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktopMODIFIED_FOR_CURRENT_DISPLAY.orig
+
