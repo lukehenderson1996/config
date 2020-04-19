@@ -1,0 +1,81 @@
+#scan nearby wifi
+sudo apt install aircrack-ng
+sudo airmon-ng start wlo1
+sudo airodump-ng mon0
+#narrow
+sudo airodump-ng -c 1 --bssid XX:XX:XX:XX:XX:XX mon0
+sudo airodump-ng -c 6 --bssid 00:18:01:ED:D9:5F mon0
+
+
+
+#or to lock into channel: 
+sudo airmon-ng start wlo1 6
+#delete and restart
+sudo iw dev mon0 del
+#to verify
+iwconfig 
+
+
+
+#injection test not working
+sudo aireplay-ng -9 -e 666D2 -a 00:18:01:ED:D9:5F  mon0
+
+
+
+
+
+
+
+
+
+
+#Sniffing IVs
+sudo airodump-ng -c 6 --bssid 00:18:01:ED:D9:5F -w dump mon0
+#So you'll have to wait and capture 40K to 85K of data packets (IVs)
+
+#If you've got enough IVs captured in one or more file, you can try to crack the WEP key
+aircrack-ng -b 00:18:01:ED:D9:5F dump-01.cap
+#To WEP dictionary crack a 64 bit key:
+aircrack-ng -w h:hex.txt -a 1 -n 64 -b 00:18:01:ED:D9:5F dump-02.cap
+
+#test file
+aircrack-ng -K test.ivs
+
+#try? with and without -K
+aircrack-ng -b 00:18:01:ED:D9:5F -n 64 -d 18 -f 50 -x1 -K dump-03.cap
+#last try:
+aircrack-ng -b 00:18:01:ED:D9:5F -n 64 -f 50 -d 18:01:3c:a2 -K -k 2 dump-03.cap
+
+
+
+
+
+
+Clearly, the simplest approach is just to enter “aircrack-ng captured-data.cap” and let it go. Having said that, there are some techniques to improve your chances of finding the WEP key quickly. There is no single magic set of steps. The following describes some approaches which tend to yield the key faster. Unless you are comfortable with experimentation, leave well enough alone and stick to the simple approach.
+
+If you are capturing arp request/reply packets, then the fastest approach is to use “aircrack-ng -z <data packet capture files>”. You can then skip the balance of this section since it will find the key very quickly assuming you have collected sufficient arp request/reply packets! NOTE: -z is the default attack mode in aircrack-ng v1.x; use -K to revert to the attack mode used in previous versions.
+
+The overriding technique is capture as much data as possible. That is the single most important task. The number of initialization vectors (IVs) that you need to determine the WEP key varies dramatically by key length and access point. Typically you need 250,000 or more unique IVs for 64 bit keys and 1.5 million or more for 128 bit keys. Clearly a lot more for longer key bit lengths. Then there is luck. There will be times that the WEP key can be determined with as few as 50,000 IVs although this is rare. Conversely, there will be times when you will need mulitple millions of IVs to crack the WEP key. The number of IVs is extremely hard to predict since some access points are very good at eliminating IVs that lead the WEP key.
+
+Generally, don't try to crack the WEP key until you have 200,000 IVs or more. If you start too early, aircrack tends to spend too much time brute forcing keys and not properly applying the statistical techniques. Start by trying 64 bit keys “aircrack-ng -n 64 captured-data.cap”. If they are using a 64 bit WEP, it can usually be cracked in less then 5 minutes (generally less then 60 seconds) with relatively few IVs. It is surprising how many APs only use 64 bit keys. If it does not find the 64 bit key in 5 minutes, restart aircrack in the generic mode: “aircrack-ng captured-data.cap”. Then at each 100,000 IVs mark, retry the “aircrack-ng -n 64 captured-data.cap” for 5 minutes.
+
+Once you hit 600,000 IVs, switch to testing 128 bit keys. At this point it is unlikely (but not impossible) that it is a 64 bit key and 600,000 IVs did not crack it. So now try “aircrack-ng captured-data.cap”.
+
+Once you hit 2 million IVs, try changing the fudge factor to “-f 4”. Run for at least 30 minutes to one hour. Retry, increasing the fudge factor by adding 4 to it each time. Another time to try increasing the fudge factor is when aircrack-ng stops because it has tried all the keys.
+
+All the while, keep collecting data. Remember the golden rule, “the more IVs the better”.
+
+Also check out the next section on how to determine which options to use as these can significantly speed up cracking the WEP key. For example, if the key is all numeric, then it can take as few as 50,000 IVs to crack a 64 bit key with the “-t” versus 200,000 IVs without the “-t”. So if you have a hunch about the nature of the WEP key, it is worth trying a few variations.
+
+How to determine which options to use
+While aircrack-ng is running, you mostly just see the beginning of the key. Although the secret WEP key is unknown at this point, there may be clues to speed things up. If the key bytes have a fairly large number of votes, then they are likely 99.5% correct. So lets look at what you can do with these clues.
+
+If the bytes (likely secret keys) are for example: 75:47:99:22:50 then it is quite obvious, that the whole key may consist only of numbers, like the first 5 bytes. So it MAY improve your cracking speed to use the -t option only when trying such keys. See Wikipedia Binary Coded Decimal for a description of what characters -t looks for.
+
+If the bytes are 37:30:31:33:36 which are all numeric values when converted to Ascii, it is a good idea to use -h option. The FAQ entry Converting hex characters to ascii provides links to determine if they are all numeric.
+
+And if the first few bytes are something like 74:6F:70:73:65, and upon entering them into your hexeditor or the links provided in the previous sentence, you see that they may form the beginning of some word, then it seems likely an ASCII key is used, thus you activate -c option to check only printable ASCII keys.
+
+If you know the start of the WEP key in hexadecimal, you can enter with the “-d” parameter. Lets assume you know the WEP key is “0123456789” in hexadecimal then you could use “-d 01” or “-d 0123”, etc.
+
+Another option to try when having problems determining the WEP key, is the “-x2” option which causes the last two keybytes to be brute forced instead of the default of one.

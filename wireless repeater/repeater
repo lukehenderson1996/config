@@ -1,0 +1,96 @@
+666d2 mac address
+
+00:18:01:a4:5b:02
+
+
+
+666d2 default gateway
+192.168.1.1
+
+
+
+
+new routers d g
+192.168.0.50
+175
+
+
+
+
+#get default gateway
+route -n
+
+#get router's mac address
+/sbin/route
+ping -c 4 192.168.1.1
+/usr/sbin/arp -a
+#fixed version:
+route -n
+ping -c 4 192.168.0.1
+/usr/sbin/arp -a
+
+
+#get channel
+iwlist wlo1 channel
+
+
+
+#watch wifi card
+
+device="$(ip -o -4 route show to default | awk '{print $5}')"
+watch -d -n0.5 iw dev $device station dump
+#??
+iwconfig $device
+
+
+
+
+#scan nearby wifi
+sudo apt install aircrack-ng
+sudo airmon-ng start wlo1
+sudo airodump-ng mon0
+#narrow
+sudo airodump-ng -c 1 --bssid XX:XX:XX:XX:XX:XX mon0
+sudo airodump-ng -c 1 --bssid 00:18:01:ED:D9:5F mon0
+
+
+
+
+#use nte software
+cd /home/luke/Documents/router/nte-05
+make
+/home/luke/Documents/router/nte-05/nte mac=e0:46:9a:62:be:72 n=192.168.0.1  user=admin password=
+
+
+Example:
+   nte m=50:6b:03:e9:ad:86 n=192.168.0.1 u=admin p=password
+#try based on example
+/home/luke/Documents/router/nte-05/nte m=e0:46:9a:62:be:72 n=192.168.0.1 u=admin p=password
+nte: FAIL.  No ACK message received.
+
+
+The IP address to specify is the IP address of the router's "LAN
+port", NOT the IP address of the WAN port ("Internet Port").
+#E0:46:9A:62:BE:72 is the LAN
+/home/luke/Documents/router/nte-05/nte m=E0:46:9A:62:BE:72 n=192.168.0.1 u=admin p=password
+
+
+#new telnetenable program in home/NetgearTelnetEnable
+/home/luke/NetgearTelnetEnable/telnetenable 192.168.0.1 E0:46:9A:62:BE:72 admin password
+
+
+#WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#install version DGN2200-V1.0.0.58_7.0.57.chk 
+/home/luke/Documents/router/nte-05/nte m=E0:46:9A:62:BE:72 n=192.168.0.1 u=admin p=password
+nte: Received ACK message.  Telnet access should be enabled.
+
+#install telnet 
+sudo apt-get install telnetd -y
+#check status
+sudo systemctl status inetd
+#telnet in
+telnet 192.168.0.1
+
+#once in, envy's IP:
+192.168.0.2
+
