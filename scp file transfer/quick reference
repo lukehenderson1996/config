@@ -1,0 +1,8 @@
+file transfer (run on local machine)
+download file
+scp luke@198.23.162.66:/home/luke/Documents/scp_transfer/file /home/luke/Documents/scp_transfer
+upload file
+scp /home/luke/Documents/scp_transfer/file luke@198.23.162.66:/home/luke/Documents/scp_transfer
+
+
+whole directory: -r
