@@ -20,3 +20,43 @@ xrandr --fb 1920x1080
 xrandr --output VGA-1 --auto
 xrandr --fb 1024x768
 
+
+
+
+
+
+
+
+for swiss server:
+
+first method (doesnt work)
+https://askubuntu.com/questions/448045/how-to-make-my-maximum-screen-resolution-to-be-detected-by-ubuntu
+$ cvt 1920 1080
+output:
+1920x1080 59.96 Hz (CVT 2.07M9) hsync: 67.16 kHz; pclk: 173.00 MHz
+Modeline "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+$ xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+
+
+second method (not tested)
+https://virtualizationreview.com/Blogs/Virtual-Insider/2014/09/change-ubuntu-resolution-on-hyper-v-vm.aspx
+$ sudo nano /etc/default/grub
+Find GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+Append that line with video=hyperv_fb:[specify resolution, e.g. 1024x768]
+Here is what it might look like: GRUB_CMDLINE_LINUX_DEFAULT="quiet splash video=hyperv_fb:1024x768"
+Save changes and exit
+Run the following command: sudo update-grub
+Restart the VM
+
+
+third method (not tested)
+https://askubuntu.com/questions/441040/failed-to-get-size-of-gamma-for-output-default-when-trying-to-add-new-screen-res
+
+
+#for script
+xrandr --output HDMI-1-1 --off
+
+
+#to fix
+
+xrandr --fb 800x600

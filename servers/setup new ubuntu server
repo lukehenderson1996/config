@@ -4,6 +4,7 @@ $ sudo adduser luke
 $ sudo usermod -a -G sudo luke
 #admin privledges
 $ gpasswd -a luke sudo
+$ sudo passwd root
 
 
 
