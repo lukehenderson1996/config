@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version = 1.0
+Type = Application
+Terminal = true
+Name = Fix_Chrome-Remote-Desktop
+Exec = /home/luke/Desktop/script-chrome-remote-desktop.sh
+Categories = Application;
+
